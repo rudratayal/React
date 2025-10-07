@@ -19,12 +19,9 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-
-        //updating existing post
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
-            //delete prv post data
             if (file) {
                 appwriteService.deleteFile(post.featuredImage);
             }
